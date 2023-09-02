@@ -1,0 +1,2 @@
+print ("Результат:", 7, 15, ".", sep = "")
+print ("Second line")
