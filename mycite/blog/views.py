@@ -7,6 +7,7 @@ from django.views.generic import ListView
 class PostListView(ListView):
     """
     Альтернативное представления списка постов
+    и использованием классов
     """
 
     queryset = Post.published.all()
