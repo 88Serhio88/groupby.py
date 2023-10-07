@@ -1,10 +1,31 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Post
+from .models import Post, Comment
 from django.core.paginator import Paginator, EmptyPage,\
                                             PageNotAnInteger
 from django.core.mail import send_mail
 from django.views.generic import ListView
-from .forms import EmailPostForm
+from .forms import EmailPostForm, CommentForm
+from django.views.decorators.http import require_POST
+
+@ require_POST
+def post_comment(request, post_id):
+    post = get_object_or_404(Post,
+                             id=post_id,
+                             status=Post.Status.PUBLISHED)
+    comment = None
+    #Комментарий был отправлен
+    form = CommentForm(data=request.POST)
+    if form.is_valid():
+        # Создать объект класса Comment, не сохарняя его в базе данных
+        comment = form.save(commit=False)
+        # Назначить пост комментарию
+        comment.post = post
+        #Сохранить комментарий в базе данных
+        comment.save()
+    return render(request, 'blog/post/comment.html',
+                  {'post':post,
+                   'form': form,
+                   'comment':comment})
 
 def post_list(request):
     post_list = Post.published.all()
@@ -32,9 +53,15 @@ def post_detail(request, year, month, day, post):
                              publish__year=year,
                              publish__month=month,
                              publish__day=day)
+    #Список активных комментариев к этому посту
+    comments = post.comments.filter(active=True)
+    #Форма для комментирования пользователями
+    form = CommentForm
     return render(request,
                   'blog/post/detail.html',
-                  {'post': post})
+                  {'post': post,
+                   'comments':comments,
+                   'form':form})
 
 class PostListView(ListView):
     """
