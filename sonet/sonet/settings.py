@@ -20,7 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-&%piwr)ta=0hs*a^mfk61+!b0e6m($=p1ff)=wd3i#82&a#g^y'
+SECRET_KEY = '=dfsdfsadfas2323'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -126,3 +126,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_REDIRECT_URL = 'dashboard'
 LOGIN_URL = 'login'
 LOGOUT_URL = 'logout'
+
+#Конфигурация сервера электронной почты
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'mr.darkusha8@gmail.com'
+EMAIL_HOST_PASSWORD = 'gucxlgewkuqucoft'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
