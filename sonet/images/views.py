@@ -74,10 +74,10 @@ def image_list(request):
         images = paginator.page(1)
     except EmptyPage:
         if images_only:
-            # If AJAX request and page out of range
-            # return an empty page
+            # если число страницы не целое
+            # вернет 1 страницу
             return HttpResponse('')
-        # If page out of range return last page of results
+        # если стр вне диапазона вернуть последнюю страницу
         images = paginator.page(paginator.num_pages)
     if images_only:
         return render(request,

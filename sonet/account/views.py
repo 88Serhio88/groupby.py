@@ -1,11 +1,12 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.contrib.auth import authenticate, login
 from .forms import LoginForm, UserRegistrationForm,\
                     UserEditForm, ProfileEditForm
 from django.contrib.auth.decorators import login_required
 from .models import Profile
 from django.contrib import messages
+from django.views.decorators.http import require_POST
 
 
 def user_login(request):
