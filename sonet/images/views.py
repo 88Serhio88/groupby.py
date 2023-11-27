@@ -11,14 +11,6 @@ from .forms import ImageCreateForm
 from .models import Image
 
 
-
-def image_detail(request, id, slug):
-    image = get_object_or_404(Image, id=id, slug=slug)
-    return render(request,
-                  'images/image/detail.html',
-                  {'section': 'images',
-                   'image': image})
-
 @login_required
 def image_create(request):
     if request.method == 'POST':
@@ -41,6 +33,14 @@ def image_create(request):
                   'images/image/create.html',
                   {'section': 'images',
                    'form': form})
+
+
+def image_detail(request, id, slug):
+    image = get_object_or_404(Image, id=id, slug=slug)
+    return render(request,
+                  'images/image/detail.html',
+                  {'section': 'images',
+                   'image': image})
 
 
 @login_required
@@ -74,10 +74,10 @@ def image_list(request):
         images = paginator.page(1)
     except EmptyPage:
         if images_only:
-            # если число страницы не целое
-            # вернет 1 страницу
+            # If AJAX request and page out of range
+            # return an empty page
             return HttpResponse('')
-        # если стр вне диапазона вернуть последнюю страницу
+        # If page out of range return last page of results
         images = paginator.page(paginator.num_pages)
     if images_only:
         return render(request,

@@ -20,7 +20,7 @@
           {% if request.user not in users_like %}
             Like
           {% else %}
-            Deslike
+            Unlike
           {% endif %}
         </a>
       </div>
@@ -35,7 +35,7 @@
           <p>{{ user.first_name }}</p>
         </div>
       {% empty %}
-        Это изображение никому не нравится.
+        Nobody likes this image yet.
       {% endfor %}
     </div>
   {% endwith %}
@@ -69,7 +69,7 @@
         var previousAction = likeButton.dataset.action;
 
         // toggle button text and data-action
-        var action = previousAction === 'like' ? 'deslike' : 'like';
+        var action = previousAction === 'like' ? 'unlike' : 'like';
         likeButton.dataset.action = action;
         likeButton.innerHTML = action;
 
