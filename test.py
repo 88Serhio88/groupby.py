@@ -1,6 +1,7 @@
-import random
+x, y = input(int()), input(int())
 
-print('Бросаем кубики... ')
-print('Значения граней:')
-print(random.randint(1, 6))
-print(random.randint(1, 6))
+print(x + y)
+print(x - y)
+print(x * y)
+print(x / y)
+print(x % y)

@@ -1,0 +1,6 @@
+создание новой виртуальной среды:
+python -m venv env/myshop
+
+активация виртуальной среды:
+.\env\myshop\Scripts\activate
+
