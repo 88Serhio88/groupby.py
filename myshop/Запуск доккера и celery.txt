@@ -11,7 +11,14 @@ URL-адресу http://127.0.0.1:15672/
 Введите guest в качестве пользовательского имени и пароль и кликните по
 Login (Войти)
 
+pip install gevent (для Windows)
+celery -A <proj_name> worker -l info -P gevent(для Windows) 
 celery -A myshop worker -l info
+
+flower - мониторинг работы celery
+celery -A myshop flower (работник celery)
+http://localhost:5555/dashboard
+Вы увидите активных работников Celery и статистику асинхронных заданий
 
 Теперь работник Celery запущен и готов к обработке заданий.
 Пройдите по URL-адресу http://127.0.0.1:15672/
