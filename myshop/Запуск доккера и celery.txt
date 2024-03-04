@@ -12,8 +12,9 @@ URL-адресу http://127.0.0.1:15672/
 Login (Войти)
 
 pip install gevent (для Windows)
-celery -A <proj_name> worker -l info -P gevent(для Windows) 
-celery -A myshop worker -l info
+
+celery -A myshop worker -l info -P gevent ---(для Windows) 
+
 
 flower - мониторинг работы celery
 celery -A myshop flower (работник celery)
